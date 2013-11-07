@@ -1,8 +1,9 @@
 require 'recap'
 require 'recap/support/namespace'
 require 'recap/recipes/rails'
+require 'recap/tasks/console/ssh'
 
-module Recap::Tasks::Rails::Console
+module Recap::Tasks::Console::Rails
   extend Recap::Support::Namespace
   
   namespace :rails do
@@ -15,10 +16,5 @@ module Recap::Tasks::Rails::Console
     task :dbconsole, roles: :app do
       run_interactively "bin/rails dbconsole --include-password"
     end
-  end
-
-  def run_interactively(command, server=nil)
-    server ||= find_servers_for_task(current_task).first
-    exec %Q(ssh #{server.host} -t 'sudo su - #{application} -c "cd #{deploy_to} && #{command}"')
   end
 end

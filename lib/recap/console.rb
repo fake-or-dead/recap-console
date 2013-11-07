@@ -1,1 +1,0 @@
-require 'recap/tasks/rails/console'

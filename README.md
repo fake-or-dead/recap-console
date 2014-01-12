@@ -7,7 +7,7 @@ Run `rails (db)console` commands via [`Recap`](https://github.com/freerange/reca
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'recap-console', github: 'snipsnap/recap-console'
+gem 'recap-console'
 ```
 
 And then execute:
@@ -26,6 +26,8 @@ In your `Capfile`, require the library
 require 'recap/tasks/rails/console'
 ```
 
+### Rails Consoles
+
 Then, to open an interactive remote `rails console`,
 
 ```console
@@ -36,6 +38,21 @@ To open an interactive remote `rails dbconsole`,
 
 ```console
 $ cap rails:dbconsole
+```
+
+### SSH
+
+To open an interactive SSH console, run
+
+```console
+$ cap ssh:console
+```
+
+To run an arbitrary shell command, run
+
+```console
+# NOTE: the current directory is your recap project directory
+$ cap ssh:command RUN="cat Gemfile"
 ```
 
 ## Contributing

@@ -23,7 +23,7 @@ In your `Capfile`, require the library
 ```ruby
 # Capfile
 # ...
-require 'recap/tasks/rails/console'
+require 'recap/recipes/console'
 ```
 
 ### Rails Consoles

@@ -3,7 +3,7 @@ require 'recap/support/namespace'
 
 module Recap::Tasks::Console
   extend Recap::Support::Namespace
-  
+
   namespace :ssh do
     desc "Remote ssh terminal"
     task :console, roles: :app do
@@ -25,6 +25,7 @@ module Recap::Tasks::Console
   def run_interactively(command="bash", server=nil)
     server ||= find_servers_for_task(current_task).first
     setup = "cd #{deploy_to} && export PATH=./bin:$PATH"
-    exec %Q{ssh #{server.host} -t 'sudo su - #{application} -c "#{setup} && #{command}"'}
+    exec %Q{ssh #{user}@#{server.host} -t 'sudo su - #{application} -c "#{setup} && #{command}"'}
+    # system 'ssh', '-l', user, server.host, '-t', "cd '#{current_path}' && env #{environment} #{command}"
   end
 end
